@@ -3,8 +3,9 @@ import { Route } from './components/Route'
 import { Home } from './components/Home'
 import { Login } from './components/Login'
 import './App.css'
+import {Dashboard} from './components/Dashboard'
 
-function App() {
+const App = () => {
 
   return (
     <div className="App">
@@ -15,6 +16,10 @@ function App() {
 
       <Route path='/login'>
         <Login></Login>
+      </Route>
+
+      <Route path='/dashboard'>
+        <Dashboard></Dashboard>
       </Route>
 
      hello

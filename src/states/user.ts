@@ -23,6 +23,8 @@ export const login = async (code : string) => {
     const decoded = jwt_decode(token)
     console.log("userts decoded", decoded)
     const result = UserSchema.safeParse(decoded)
+    console.log("userts result", result)
+
     if (result.success === false) return
     _user.next(result.data)
     localStorage.setItem("token", token)
