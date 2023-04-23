@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import generateRandomString from 'generate-random-string'
 
 const rootUrl = "https://accounts.spotify.com/authorize"
@@ -12,19 +11,9 @@ playlist-read-private \
 playlist-modify-private \
 playlist-modify-public"
 
-const AUTH_URL = `${rootUrl}
+export const AUTH_URL = `${rootUrl}
 ?client_id=${client_id}
 &response_type=code
 &redirect_uri=${redirect_uri}
 &state=${state}
 &scope=${scope}`
-  
-export const Home = () =>{
-
-    return ( <div> 
-        <a href={AUTH_URL}>
-            Login with spotify
-        </a>
-         </div>
-        )   
-}

@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const Route: FC<Props> = ({path, children}) => {
-    const currentPath = useGlobal($path, window.location.pathname)
+    const currentPath = useGlobal($path)
     if (path != currentPath) return null
     return(
         <>{children}</>
