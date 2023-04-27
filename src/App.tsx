@@ -23,6 +23,7 @@ const App = () => {
   
   return (
     <div className="app">
+
       
       <div className={`canvas ${modal ? 'blur ' : '' }`}>
         <Sphere />
@@ -31,17 +32,17 @@ const App = () => {
       <div className="overlay">
 
         
-       { !user && <Route path="/">
+       <Route path="/" hasAccess={true}>
           <Home />
-        </Route>}
+        </Route>
 
-        <Route path="/discover"> <Discover/> </Route>
+        <Route path="/discover" hasAccess={!!user}> <Discover/> </Route>
 
-        <Route path="/generate"> <Generate/> </Route>
+        <Route path="/generate" hasAccess={!!user}> <Generate/> </Route>
 
-        <Route path="/account"> <Account/> </Route>
+        <Route path="/account" hasAccess={!!user}> <Account/> </Route>
 
-        <Route path="/library">  <Library/> </Route>
+        <Route path="/library" hasAccess={!!user}>  <Library/> </Route>
 
         {user && <Navigation />}
       </div>

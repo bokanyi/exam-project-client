@@ -30,8 +30,8 @@ const $library = new BehaviorSubject <PlaylistMongo[]>([])
 const $playlist = new BehaviorSubject < PlaylistSpotify | null>(null)
 
 
-const getTracks = async (id: string) => {
-    const tracks = await recommendationRequest(id)
+const getTracks = async (id: string, color:  string) => {
+    const tracks = await recommendationRequest(id, color)
     if (!tracks) return null
     $tracks.next(tracks)
 }
@@ -56,4 +56,4 @@ const deletePlaylist = async (id: string) => {
 }
 
 
-export { $tracks, $library, $playlist, getLibrary, getPlaylist, deletePlaylist,  getTracks   }
+export { $tracks, $library, $playlist, getLibrary, getPlaylist, deletePlaylist,  getTracks }

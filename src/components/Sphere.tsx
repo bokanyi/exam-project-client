@@ -1,23 +1,33 @@
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
+import useGlobal from "../hooks/useGlobal";
+import { $geometry, $color } from "../states/geometry"
+
+
 
 const Object = () => {
+  
+  const geometry = useGlobal($geometry)
+  const color = useGlobal($color)
+
   return (
-    <mesh position={[0, 0, 0]} scale={2}>
+    <mesh position={[0, 0, 0]} scale={parseInt(geometry.scale)}>
       <torusKnotGeometry attach="geometry" />
       {/* <meshLambertMaterial attach="material" color="red" /> */}
       <meshPhongMaterial 
       attach="material" 
-      color={"red"} 
+      color={`hsl(${color}, 20%, 50%)`}
       depthTest={false}
       // envMap={Texture}
       transparent
       // alphaTest={0.35}
       opacity={0.99}
       reflectivity={1}
-      emissive={"black"} 
-      specular={"blue"} 
+      // emissive={"black"} 
+      // emissive={`hsl(${color}, 100%, 0%)`}
+      // specular={"blue"} 
+      specular={`hsl(${360-parseInt(color)}, 90%, 50%)`}
       shininess={40}
       />
 
@@ -26,13 +36,15 @@ const Object = () => {
 };
 
 const Object2 = () => {
+  const color = useGlobal($color)
+
   return (
     <mesh position={[0, 0, 0]} scale={3.9}>
       < icosahedronGeometry />
       {/* <meshLambertMaterial attach="material" color="red" /> */}
       <meshPhongMaterial 
       attach="material" 
-      color={"blue"} 
+      color={`hsl(${360-parseInt(color)}, 90%, 50%)`}
       // depthTest={false}
       depthWrite={false}
       // envMap={Texture}

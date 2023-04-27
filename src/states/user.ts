@@ -10,6 +10,7 @@ const UserSchema = z.object({
   spotifyId: z.string(),
   spotify: z.string(),
   _id: z.string(),
+  // exp: z.number(), //expires in 
 });
 
 type UserType = z.infer<typeof UserSchema>;
@@ -32,7 +33,9 @@ const login = async (code: string) => {
   const token = await loginRequest(code);
   console.log(token);
   const user = decodeUser(token);
-  console.log(user);
+  const decoded = jwt_decode(token) as any;
+  console.log("decoded.exp", decoded.exp)
+  console.log("decoded user", user);
   if (!user) return navigate("/");
   $user.next(user);
   localStorage.setItem("token", token!);

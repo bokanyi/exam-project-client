@@ -3,7 +3,7 @@ import { AUTH_URL } from "../../config";
 
 export const Home = () => {
   return (
-    <div >
+    <div style={{zIndex: 1}}>
       <p>
         Create your own playlist with our 3D
         customization tool. <strong>Explore new fields of music</strong> and define
