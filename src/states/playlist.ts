@@ -1,6 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import {getLibraryRequest, getPlaylistRequest, deletePlaylistRequest, recommendationRequest} from "../api/requests"
 
+/*
 type PlaylistMongo = {
     _id: string
     user: string
@@ -10,6 +11,7 @@ type PlaylistMongo = {
     createdAt: string
     updatedAt: string
 }
+*/
 
 type Tracks ={
     artist: string,
@@ -17,17 +19,22 @@ type Tracks ={
     uri: string,
   }
 
-type PlaylistSpotify = {
+type Playlist = {
+    _id: string,
+    user: string,
     name: string,
   description: string,
   spotify: string,
-  tracks: Tracks[]
+  spotifyId: string,
+  tracks: Tracks[],
+  createdAt: string,
+  updatedAt: string,
 }
 const $tracks = new BehaviorSubject <Tracks[]>([])
 
-const $library = new BehaviorSubject <PlaylistMongo[]>([])
+const $library = new BehaviorSubject <Playlist[]>([])
 
-const $playlist = new BehaviorSubject < PlaylistSpotify | null>(null)
+const $playlist = new BehaviorSubject < Playlist | null>(null)
 
 
 const getTracks = async (id: string, color:  string) => {

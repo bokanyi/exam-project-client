@@ -34,31 +34,33 @@ const recommendationSchema = z.object({
   uri: z.string(),
 });
 
-const playlistMongoSchema = z.object({
+const playlistSchema = z.object({
   user: z.string(),
   name: z.string(),
   description: z.string(),
   spotifyId: z.string(),
+  spotify: z.string(),
+  tracks: z.array(recommendationSchema),
   _id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
   __v: z.number(),
 });
 
-const playlistSpotifySchema = z.object({
-  name: z.string(),
-  description: z.string(),
-  spotify: z.string(),
-  tracks: z.array(recommendationSchema),
-});
+// const playlistSpotifySchema = z.object({
+//   name: z.string(),
+//   description: z.string(),
+//   spotify: z.string(),
+//   tracks: z.array(recommendationSchema),
+// });
 
 const recommendationsSchema = z.array(recommendationSchema);
 
 type RecommendationSchema = z.infer<typeof recommendationSchema>;
 
-type PlaylistMongoSchema = z.infer<typeof playlistMongoSchema>;
+type PlaylistSchema = z.infer<typeof playlistSchema>;
 
-type PlaylistSpotifySchema = z.infer<typeof playlistSpotifySchema>;
+// type PlaylistSpotifySchema = z.infer<typeof playlistSpotifySchema>;
 
 const $token = new BehaviorSubject<string | null>(
   localStorage.getItem("token")
@@ -148,7 +150,7 @@ const createRequest = async (
   id: string,
   name: string,
   tracks: string[]
-): Promise<PlaylistMongoSchema | null> => {
+): Promise<PlaylistSchema | null> => {
   console.log(tracks, name);
   try {
     const response = await client.post(
@@ -162,7 +164,7 @@ const createRequest = async (
       },
       { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
-    const result = playlistMongoSchema.safeParse(response.data);
+    const result = playlistSchema.safeParse(response.data);
     console.log("response in login", response.data);
     console.log("result in login", result);
     if (result.success === false) {
@@ -175,7 +177,7 @@ const createRequest = async (
     return null;
   }
 };
-const getLibraryRequest = async (): Promise<PlaylistMongoSchema[] | null> => {
+const getLibraryRequest = async (): Promise<PlaylistSchema[] | null> => {
   const data = await get(`api/playlist`);
   console.log(data);
   return data;
@@ -198,7 +200,7 @@ const getLibraryRequest = async (): Promise<PlaylistMongoSchema[] | null> => {
 
 const getPlaylistRequest = async (
   id: string
-): Promise<PlaylistSpotifySchema | null> => {
+): Promise<PlaylistSchema | null> => {
   const data = await get(`api/playlist/${id}`);
   console.log(data);
   return data;
