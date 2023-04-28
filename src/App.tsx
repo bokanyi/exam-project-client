@@ -14,6 +14,8 @@ import useGlobal from "../src/hooks/useGlobal";
 import { Account } from "./components/pages/Account";
 import { Library } from "./components/pages/Library";
 import { Discover } from "./components/pages/Discover";
+import { Playlist } from "./components/uilib/Playlist";
+import ConfirmPanel from "./components/uilib/ConfirmPanel";
 
 const App = () => {
   const user = useGlobal($user);
@@ -24,17 +26,23 @@ const App = () => {
   return (
     <div className="app">
 
-      
-      <div className={`canvas ${modal ? 'blur ' : '' }`}>
+      { modal.open && 
+      <div className="wrapper">
+
+      { (modal.content==="playlist") && <Playlist/>}
+
+      {(modal.content === "confirm-panel") && <ConfirmPanel/>}
+
+      </div>}
+
+      <div className={`canvas ${modal.open ? 'blur ' : '' }`}>
         <Sphere />
       </div>
 
-      <div className="overlay">
+      <div className={`overlay ${modal.open ? 'blur ' : '' }`}>
 
         
-       <Route path="/" hasAccess={true}>
-          <Home />
-        </Route>
+       <Route path="/" hasAccess={true}> <Home /> </Route>
 
         <Route path="/discover" hasAccess={!!user}> <Discover/> </Route>
 

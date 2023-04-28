@@ -26,7 +26,20 @@ export const Generate = () => {
       {tracks.length > 0 ? (
         <div>
           <input type="text" placeholder="your playlist" value={playlistName} onChange={(e) => setPlaylistName(e.target.value)}/>
-          <Playlist />
+          
+          <div>
+      {tracks.map((track) => {
+          return (
+            <>
+            <div style={{display: "flex", justifyContent: "space-between",}}>
+              <p>{track.artist}</p>
+              <p>{track.name}</p>
+            </div>
+            <hr />
+            </>
+          )
+        })}
+      </div>
           <button onClick={() => {
             createRequest(user?._id, playlistName, tracksUri),
             $tracks.next([])}

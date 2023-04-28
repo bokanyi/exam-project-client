@@ -1,9 +1,17 @@
 import { BehaviorSubject } from "rxjs";
 
-const $modal = new BehaviorSubject(false)
+type Modal ={
+    open: boolean,
+    content: string
+}
+const $modal = new BehaviorSubject<Modal>({
+    open: false,
+    content: ""
 
-const handleModal = () => {
-    $modal.next(!$modal.getValue())
+})
+
+const handleModal = (content: string) => {
+    $modal.next({open: !$modal.getValue().open, content: content})
 }
 
 export {$modal, handleModal}

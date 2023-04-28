@@ -18,7 +18,7 @@ export const Account = () => {
       // flexWrap: "nowrap",
       }}>
       
-        {modal && 
+        {/* {modal && 
         <div className="popup">
           <p>Are you sure you want to say goodbye?</p>
           <div>
@@ -27,13 +27,13 @@ export const Account = () => {
           <button onClick={() => {handleModal()}}>no</button>
           </div>
         </div>
-        }
+        } */}
         <p>name: {user?.display_name}</p>
         <p>email: {user?.email}</p>
         <p>spotify account: <a href={user?.spotify} target="blank">open in spotify </a></p>
         <div>
 
-        <button onClick={() => {handleModal()}}>delete account</button>
+        <button onClick={() => {handleModal("confirm-panel")}}>delete account</button>
         <button onClick={logout}>log out</button>
         </div>
     </div>
