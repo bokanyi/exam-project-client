@@ -8,6 +8,7 @@ import {
 } from "../../states/playlist";
 import { Playlist } from "../uilib/Playlist";
 import { $modal, handleModal} from "../../states/modal"
+import { navigate } from "../../states/routes";
 import { $geometry, $color, setScale, setColor } from "../../states/geometry"
 
 
@@ -42,7 +43,9 @@ export const Generate = () => {
       </div>
           <button onClick={() => {
             createRequest(user?._id, playlistName, tracksUri),
-            $tracks.next([])}
+            $tracks.next([])
+            // navigate("/library")
+          }
             }>save</button>
           <button onClick={() => $tracks.next([])}>back</button>
         </div>

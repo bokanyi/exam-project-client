@@ -123,9 +123,9 @@ const recommendationRequest = async (
         // description: "spotify proba",
         seed_genres: color,
         target_danceability: 0.6,
-        min_instrumentalness: 0.2,
-        max_instrumentalness: 0.8,
-        min_popularity: 50,
+        // min_instrumentalness: 0.2,
+        // max_instrumentalness: 0.8,
+        // min_popularity: 50,
         min_tempo: 120,
         max_tempo: 200,
       },
@@ -231,15 +231,12 @@ const deletePlaylistRequest = async (id: string): Promise<string | null> => {
     return null;
   }
 };
-const deleteAccountRequest = async (user: string): Promise<string | null> => {
+const deleteAccountRequest = async (id: string): Promise<string | null> => {
   try {
-    const response = await client.delete(`api/user`, {
+    const response = await client.delete(`api/user/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      data: {
-        user: user,
-      },
+      }
     });
     return response.data;
   } catch (error) {

@@ -58,8 +58,8 @@ const logout = () => {
   endSession();
 };
 
-const deleteAccount = async (user: string) => {
-  const data = await deleteAccountRequest(user)
+const deleteAccount = async (id: string) => {
+  const data = await deleteAccountRequest(id)
   endSession()
 }
 

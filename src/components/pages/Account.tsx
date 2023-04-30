@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import useGlobal from "../../hooks/useGlobal";
 import { $user, deleteAccount, login, logout } from "../../states/user";
 import { $modal, handleModal} from "../../states/modal"

@@ -3,7 +3,7 @@ import { Route } from "./components/Route";
 import { Home } from "./components/pages/Home";
 import { Login } from "./components/pages/Login";
 import "./App.css";
-import { Dashboard } from "./components/pages/Dashboard";
+import { Dashboard } from "./components/pages/x_Dashboard";
 import { Sphere } from "./components/Sphere";
 import { Navigation } from "./components/Navigation";
 import { Generate } from "./components/pages/Generate";

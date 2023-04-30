@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import { handleModal } from "../../states/modal";
-import {  deleteAccount } from "../../states/user";
+import useGlobal from "../../hooks/useGlobal";
+import { $user, deleteAccount } from "../../states/user";
 
 
 export default function ConfirmPanel() {
 
+    const user = useGlobal($user);
 
    const ref = useRef();
 
@@ -25,7 +27,7 @@ export default function ConfirmPanel() {
     <p>Are you sure you want to say goodbye?</p>
     <div>
 
-    <button onClick={() => {deleteAccount(user?._id)}}>delete</button>
+    <button onClick={() => {deleteAccount(user?._id),handleModal("")}}>delete</button>
     <button onClick={() => {handleModal("")}}>no</button>
     </div>
   </div>
