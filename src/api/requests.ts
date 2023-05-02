@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosError } from "axios";
+import axios, { Axios, AxiosError, AxiosResponse } from "axios";
 import { optional, z } from "zod";
 import { BehaviorSubject } from "rxjs";
 import jwt_decode from "jwt-decode";
@@ -68,6 +68,12 @@ const $token = new BehaviorSubject<string | null>(
 
 let tokenTimeout: number | null = null;
 
+const endSession = () => {
+  //az endsession is mehet a token feliratkozasra
+  localStorage.removeItem("token");
+  $token.next(null);
+};
+
 $token.subscribe((token) => {
   if (tokenTimeout) clearTimeout(tokenTimeout);
   if (!token) return;
@@ -89,11 +95,6 @@ $token.subscribe((token) => {
 
 //feliratkozom a tokenre hogy ha lejart tuntesse el ha valtozik akkor mentsem a localstorigaba
 
-const endSession = () => {
-  //az endsession is mehet a token feliratkozasra
-  localStorage.removeItem("token");
-  $token.next(null);
-};
 
 const get = async (path: string) => {
   try {
@@ -177,25 +178,11 @@ const createRequest = async (
     return null;
   }
 };
+
 const getLibraryRequest = async (): Promise<PlaylistSchema[] | null> => {
   const data = await get(`api/playlist`);
   console.log(data);
   return data;
-  /*
-    try {
-     const response = await client.get("api/playlist",
-     { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }})
-     console.log(response.data)
-    //  const result = playlistSchema.safeParse(response)
-     // console.log("response in login", response)
-     // console.log("result in login", result)
-    //  if (result.success===false) return null
-    //  console.log(result.data)
-     return response.data
-    } catch (error) {
-     return null
-    } 
-    */
 };
 
 const getPlaylistRequest = async (
@@ -204,29 +191,14 @@ const getPlaylistRequest = async (
   const data = await get(`api/playlist/${id}`);
   console.log(data);
   return data;
-  /*
-    try {
-     const response = await client.get(`api/playlist/${id}`,
-     { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }})
-     console.log(response.data)
-    //  const result = playlistSchema.safeParse(response)
-     // console.log("response in login", response)
-     // console.log("result in login", result)
-    //  if (result.success===false) return null
-    //  console.log(result.data)
-     return response.data
-    } catch (error) {
-     return null
-    } 
-    */
 };
 
-const deletePlaylistRequest = async (id: string): Promise<string | null> => {
+const deletePlaylistRequest = async (id: string): Promise<AxiosResponse | null> => {
   try {
     const response = await client.delete(`api/playlist/${id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
-    return response.data;
+    return response;
   } catch (error) {
     return null;
   }

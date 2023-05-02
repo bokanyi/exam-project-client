@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Discover = () => {
   return (
-    <div>Coming soon!</div>
+    <div style={{zIndex: 1}}>COMING SOON!</div>
   )
 }
 

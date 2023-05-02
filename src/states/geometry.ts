@@ -6,7 +6,7 @@ type Geometry = {
 }
 
 const $geometry = new BehaviorSubject<Geometry | null>({
-    scale: "5"
+    scale: "2"
 })
 
 const $color = new BehaviorSubject("0")

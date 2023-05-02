@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { createRequest } from "../../api/requests";
 import useGlobal from "../../hooks/useGlobal";
-import { $user, login, logout } from "../../states/user";
+import { $user } from "../../states/user";
 import {
   $tracks,
   getTracks,
 } from "../../states/playlist";
-import { Playlist } from "../uilib/Playlist";
-import { $modal, handleModal} from "../../states/modal"
-import { navigate } from "../../states/routes";
 import { $geometry, $color, setScale, setColor } from "../../states/geometry"
+import { RangeInput } from "../uilib/RangeInput";
+import { Recommendations } from "../uilib/Recommendations";
 
 
 export const Generate = () => {
@@ -17,53 +14,31 @@ export const Generate = () => {
   const tracks = useGlobal($tracks);
   const geometry = useGlobal($geometry)
   const color = useGlobal($color)
-  const [playlistName, setPlaylistName] = useState("your playlist")
+
   // const [volumeValue, setVolumeValue] = useState("5")
 
-  const tracksUri = tracks.map((track) => track.uri)
-  console.log(tracks);
+
   return (
-    <div style={{zIndex: 1}}>
+    <div className="generate" style={{zIndex: 1}}>
       {tracks.length > 0 ? (
-        <div>
-          <input type="text" placeholder="your playlist" value={playlistName} onChange={(e) => setPlaylistName(e.target.value)}/>
-          
-          <div>
-      {tracks.map((track) => {
-          return (
-            <>
-            <div style={{display: "flex", justifyContent: "space-between",}}>
-              <p>{track.artist}</p>
-              <p>{track.name}</p>
-            </div>
-            <hr />
-            </>
-          )
-        })}
-      </div>
-          <button onClick={() => {
-            createRequest(user?._id, playlistName, tracksUri),
-            $tracks.next([])
-            // navigate("/library")
-          }
-            }>save</button>
-          <button onClick={() => $tracks.next([])}>back</button>
-        </div>
+        <Recommendations/>
       ) : (
-        <div>
-        <div>
+        <div className="generateInput">
+          {/* <RangeInput/> */}
+          
+        <div >
           <input type="range" id="volume" name="volume" value={geometry?.scale}
-                min="1" max="10"onChange={(e)=> {setScale(e.target.value), console.log(geometry)}}/>
-          <label >Volume</label>
+                min="1" max="10"onChange={(e)=> {setScale(e.target.value)}}/>
+          {/* <label >Volume</label> */}
         </div>
+          <button onClick={() => getTracks(user?._id, color)}>GENERATE</button>
 
         <div>
           <input type="range" id="volume" name="volume" value={color}
-                min={0} max={360} onChange={(e)=> {setColor(e.target.value), console.log(color)}}/>
-          <label >Color</label>
+                min={0} max={360} onChange={(e)=> {setColor(e.target.value)}}/>
+          {/* <label >Color</label> */}
         </div>
         
-          <button onClick={() => getTracks(user?._id, color)}>Generate</button>
         </div>
       )}
     </div>

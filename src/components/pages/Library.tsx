@@ -15,61 +15,48 @@ export const Library = () => {
   const modal = useGlobal($modal);
   const playlist = useGlobal($playlist);
 
+  useEffect(() => {
+    getLibrary();
+  }, [])
   
+  const handleClick = async (id: string) => {
+    try {
+      const response = await deletePlaylist(id)
+      console.log(response)
+      // getLibrary();
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div
-      style={{
-        // position: "relative",
-        // display: "flex",
+      style={{    
         zIndex: 1,
-        // margin: "auto"
       }}
     >
-      {/* {modal && (
-        <div className="wrapper">
-          <div className="popup">
-            <p>{playlist?.name}</p>
-            <div>
-              <Playlist />
-              <button
-                onClick={() => {
-                  handleModal();
-                }}
-              >
-                back
-              </button>
-              <button>
-                <a href={playlist?.spotify} target="blank">
-                  listen on spotify
-                </a>
-              </button>
-            </div>
-          </div>
-        </div>
-      )} */}
 
-      <div
-        style={
-          {
-            // position: "relative",
-          }
-        }
-      >
+      <div className="library" >
         {library.map((playlist) => {
           return (
-            <div style={{ display: "flex" }}>
-              <p onClick={() => (getPlaylist(playlist._id), handleModal("playlist"))}>
+            <div>
+
+            <div className="libraryItem" >
+
+              <p style={{fontWeight: "700", cursor: "pointer"}}onClick={() => (getPlaylist(playlist._id), handleModal("playlist"))}>
                 {playlist.name}
               </p>
+              <div style={{display: "flex" , gap: "1em", alignItems: "center"}}>
+
               <p>{playlist.createdAt.split("T")[0]}</p>
               <button
-                onClick={() => {
-                  deletePlaylist(playlist._id), getLibrary();
-                }}
+                onClick={() => handleClick(playlist._id)}
               >
-                delete
+                DELETE
               </button>
+              </div>
+            </div>
+              <hr />
             </div>
           );
         })}

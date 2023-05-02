@@ -1,5 +1,5 @@
 import { BehaviorSubject } from "rxjs";
-import {getLibraryRequest, getPlaylistRequest, deletePlaylistRequest, recommendationRequest} from "../api/requests"
+import {getLibraryRequest, getPlaylistRequest, createRequest, deletePlaylistRequest, recommendationRequest} from "../api/requests"
 
 /*
 type PlaylistMongo = {
@@ -55,12 +55,19 @@ const getPlaylist = async (id: string) => {
     $tracks.next(playlist.tracks)
 }
 
+const createPlaylist = async (id: string,
+    name: string,
+    tracks: string[]) => {
+    const playlist = await createRequest(id, name, tracks)
+    getLibrary()
+    return playlist
+}
+
 const deletePlaylist = async (id: string) => {
     const response = await deletePlaylistRequest(id)
-    // if (!response) return null
-    console.log(response)
-
+    getLibrary()
+    return response
 }
 
 
-export { $tracks, $library, $playlist, getLibrary, getPlaylist, deletePlaylist,  getTracks }
+export { $tracks, $library, $playlist, getLibrary, getPlaylist, createPlaylist, deletePlaylist,  getTracks }

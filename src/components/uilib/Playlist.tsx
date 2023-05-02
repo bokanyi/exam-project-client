@@ -3,7 +3,6 @@ import {
   $tracks,
   $playlist,
 } from "../../states/playlist";
-// import { Playlist } from "../../uilb/Playlist";
 import { $modal, handleModal } from "../../states/modal";
 import React, { useEffect, useRef} from "react";
 
@@ -13,39 +12,6 @@ export const Playlist = () => {
   const tracks = useGlobal($tracks);
   const modal = useGlobal($modal)
 
-  /*
-  const handleClickOutside = () => {
-    console.log("clicked");
-    handleModal("");
-  };
-  
-
-
-  const useOutsideClick =  (callback: Function) => {
-    const ref = React.useRef();
-    let click = 1
-    useEffect(() => {
-       const  handleClick = (event: Event ) => {
-         if (click ===0 && ref.current && !ref.current.contains(event.target)) {
-           console.log("clicked inside handleclick")
-           callback();
-          }
-          else click=0
-        };
-        
-        document.addEventListener('click', handleClick);
-        
-        return () => {
-          document.removeEventListener('click', handleClick);
-        };
-      }, [ref]);
-      
-      
-    return ref;
-  };
-
-  const ref = useOutsideClick(handleClickOutside);
-*/
   const ref = useRef();
 
   useEffect(() => {
@@ -63,12 +29,12 @@ export const Playlist = () => {
 
   return (
     <div ref={ref} className="popup">
-      <p>{playlist?.name}</p>
+      <h1>{playlist?.name}</h1>
       <div>
       {tracks.map((track) => {
           return (
             <>
-            <div style={{display: "flex", justifyContent: "space-between",}}>
+            <div key={track.uri} style={{display: "flex", justifyContent: "space-between",}}>
               <p>{track.artist}</p>
               <p>{track.name}</p>
             </div>
@@ -81,11 +47,11 @@ export const Playlist = () => {
             handleModal("");
           }}
         >
-          back
+          BACK
         </button>
         <button>
           <a href={playlist?.spotify} target="blank">
-            listen on spotify
+            LISTEN ON SPOTIFY
           </a>
         </button>
       </div>

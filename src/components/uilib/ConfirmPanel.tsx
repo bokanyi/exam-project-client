@@ -27,8 +27,8 @@ export default function ConfirmPanel() {
     <p>Are you sure you want to say goodbye?</p>
     <div>
 
-    <button onClick={() => {deleteAccount(user?._id),handleModal("")}}>delete</button>
-    <button onClick={() => {handleModal("")}}>no</button>
+    <button onClick={() => {deleteAccount(user?._id),handleModal("")}}>DELETE</button>
+    <button onClick={() => {handleModal("")}}>NO</button>
     </div>
   </div>
   )
