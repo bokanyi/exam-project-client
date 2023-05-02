@@ -4,7 +4,7 @@ import {
   $playlist,
 } from "../../states/playlist";
 import { $modal, handleModal } from "../../states/modal";
-import React, { useEffect, useRef} from "react";
+import  { useEffect, useRef} from "react";
 
 export const Playlist = () => {
 

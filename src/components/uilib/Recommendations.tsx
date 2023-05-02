@@ -50,7 +50,7 @@ export const Recommendations = () => {
         <button onClick={() => $tracks.next([])}>BACK</button>
         <button
           onClick={() => {
-            createPlaylist(user?._id, playlistName, tracksUri), $tracks.next([]),
+            createPlaylist(user?._id, playlistName, tracksUri), $tracks.next([]), 
             navigate("/library")
           }}
         >

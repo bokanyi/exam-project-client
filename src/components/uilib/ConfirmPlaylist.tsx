@@ -2,11 +2,19 @@ import { useEffect, useRef } from "react";
 import { handleModal } from "../../states/modal";
 import useGlobal from "../../hooks/useGlobal";
 import { $user, deleteAccount } from "../../states/user";
-
-
-export default function ConfirmPanel() {
-
-    const user = useGlobal($user);
+import {
+    $library,
+    $playlist,
+    getLibrary,
+    getPlaylist,
+    deletePlaylist,
+  } from "../../states/playlist";
+  
+  
+  export default function ConfirmPanel() {
+      
+      const user = useGlobal($user);
+      const playlist = useGlobal($playlist);
 
    const ref = useRef();
 
@@ -24,11 +32,11 @@ export default function ConfirmPanel() {
 
   return (
     <div ref={ref} className="popup">
-    <p>Are you sure you want to say goodbye?</p>
+    <p>You can only delete this playlist in our database, but it will remain in your spotify lists.</p>
     <div>
 
-    <button onClick={() => {deleteAccount(user?._id),handleModal("")}}>DELETE</button>
-    <button onClick={() => {handleModal("")}}>NO</button>
+    <button onClick={() => {deletePlaylist(playlist?._id),handleModal("")}}>DELETE</button>
+    <button onClick={() => {handleModal("")}}>CANCEL</button>
     </div>
   </div>
   )

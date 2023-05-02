@@ -39,7 +39,7 @@ export const Library = () => {
       <div className="library" >
         {library.map((playlist) => {
           return (
-            <div>
+            <div key={playlist._id} >
 
             <div className="libraryItem" >
 
@@ -50,7 +50,10 @@ export const Library = () => {
 
               <p>{playlist.createdAt.split("T")[0]}</p>
               <button
-                onClick={() => handleClick(playlist._id)}
+                onClick={() =>{
+                  getPlaylist(playlist._id),
+                  handleModal("confirm-playlist")
+                }}
               >
                 DELETE
               </button>

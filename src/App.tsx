@@ -15,7 +15,8 @@ import { Account } from "./components/pages/Account";
 import { Library } from "./components/pages/Library";
 import { Discover } from "./components/pages/Discover";
 import { Playlist } from "./components/uilib/Playlist";
-import ConfirmPanel from "./components/uilib/ConfirmPanel";
+import ConfirmAccount from "./components/uilib/ConfirmAccount";
+import ConfirmPlaylist from "./components/uilib/ConfirmPlaylist";
 
 const App = () => {
   const user = useGlobal($user);
@@ -31,7 +32,12 @@ const App = () => {
 
       { (modal.content==="playlist") && <Playlist/>}
 
-      {(modal.content === "confirm-panel") && <ConfirmPanel/>}
+
+      {(modal.content === "confirm-playlist") && <ConfirmPlaylist/>}
+
+      {(modal.content === "confirm-account") && <ConfirmAccount/>}
+
+
 
       </div>}
 
