@@ -25,7 +25,7 @@ export const Account = () => {
       <div>
         <button
           onClick={() => {
-            handleModal("confirm-panel");
+            handleModal("confirm-account");
           }}
         >
           DELETE ACCOUNT

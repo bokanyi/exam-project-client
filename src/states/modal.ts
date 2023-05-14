@@ -15,3 +15,4 @@ const handleModal = (content: string) => {
 }
 
 export {$modal, handleModal}
+

@@ -115,12 +115,12 @@ video {
   /* height: 80%; */
   height: 100%;
   width: 100%;
-  /* z-index: 0; */
+  z-index: 0;
   /* opacity: 0; */
   /* touch-action: none;
   animation: fade-in 1s ease 0.3s forwards; */
   transition: filter 1s ease-in-out;
-  filter: blur(0em);
+  /* filter: blur(0em); */
 }
 
 .sphere {

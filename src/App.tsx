@@ -3,7 +3,6 @@ import { Route } from "./components/Route";
 import { Home } from "./components/pages/Home";
 import { Login } from "./components/pages/Login";
 import "./App.css";
-import { Dashboard } from "./components/pages/x_Dashboard";
 import { Sphere } from "./components/Sphere";
 import { Navigation } from "./components/Navigation";
 import { Generate } from "./components/pages/Generate";
@@ -17,6 +16,7 @@ import { Discover } from "./components/pages/Discover";
 import { Playlist } from "./components/uilib/Playlist";
 import ConfirmAccount from "./components/uilib/ConfirmAccount";
 import ConfirmPlaylist from "./components/uilib/ConfirmPlaylist";
+import Object from "./components/uilib/Object"
 
 const App = () => {
   const user = useGlobal($user);
