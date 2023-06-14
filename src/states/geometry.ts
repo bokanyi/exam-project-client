@@ -5,7 +5,7 @@ type Geometry = {
     scale: string
 }
 
-const $geometry = new BehaviorSubject<Geometry | null>({
+const $geometry = new BehaviorSubject<Geometry>({
     scale: "2"
 })
 

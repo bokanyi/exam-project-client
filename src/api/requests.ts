@@ -1,9 +1,9 @@
-import axios, { Axios, AxiosError, AxiosResponse } from "axios";
-import { optional, z } from "zod";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { z } from "zod";
 import { BehaviorSubject } from "rxjs";
 import jwt_decode from "jwt-decode";
 
-const client = axios.create({ baseURL: "http://localhost:8000/" });
+const client = axios.create({ baseURL: import.meta.env.VITE_SERVER_URL });
 
 const tokenSchema = z.object({
   data: z.string(),

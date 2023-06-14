@@ -6,9 +6,8 @@ import "./App.css";
 import { Sphere } from "./components/Sphere";
 import { Navigation } from "./components/Navigation";
 import { Generate } from "./components/pages/Generate";
-import { $user, login, logout } from "../src/states/user";
+import { $user } from "../src/states/user";
 import { $modal } from "../src/states/modal";
-import { navigate } from "../src/states/routes";
 import useGlobal from "../src/hooks/useGlobal";
 import { Account } from "./components/pages/Account";
 import { Library } from "./components/pages/Library";
@@ -16,13 +15,11 @@ import { Discover } from "./components/pages/Discover";
 import { Playlist } from "./components/uilib/Playlist";
 import ConfirmAccount from "./components/uilib/ConfirmAccount";
 import ConfirmPlaylist from "./components/uilib/ConfirmPlaylist";
-import Object from "./components/uilib/Object"
 
 const App = () => {
+  
   const user = useGlobal($user);
   const modal = useGlobal($modal)
-
-  // console.log(user);
   
   return (
     <div className="app">
@@ -32,12 +29,9 @@ const App = () => {
 
       { (modal.content==="playlist") && <Playlist/>}
 
-
       {(modal.content === "confirm-playlist") && <ConfirmPlaylist/>}
 
       {(modal.content === "confirm-account") && <ConfirmAccount/>}
-
-
 
       </div>}
 
@@ -47,7 +41,6 @@ const App = () => {
 
       <div className={`overlay ${modal.open ? 'blur ' : '' }`}>
 
-        
        <Route path="/" hasAccess={true}> <Home /> </Route>
 
         <Route path="/discover" hasAccess={!!user}> <Discover/> </Route>

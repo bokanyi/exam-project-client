@@ -1,33 +1,20 @@
-import React, { useState, useEffect } from "react";
+import {useEffect } from "react";
 import useGlobal from "../../hooks/useGlobal";
 import {
   $library,
-  $playlist,
   getLibrary,
   getPlaylist,
-  deletePlaylist,
 } from "../../states/playlist";
-import { Playlist } from "../uilib/Playlist";
-import { $modal, handleModal } from "../../states/modal";
+import { handleModal } from "../../states/modal";
 
 export const Library = () => {
   const library = useGlobal($library);
-  const modal = useGlobal($modal);
-  const playlist = useGlobal($playlist);
 
   useEffect(() => {
     getLibrary();
   }, [])
   
-  const handleClick = async (id: string) => {
-    try {
-      const response = await deletePlaylist(id)
-      console.log(response)
-      // getLibrary();
-    } catch (error) {
-      console.log(error)
-    }
-  }
+
 
   return (
     <div

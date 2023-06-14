@@ -2,7 +2,8 @@ import generateRandomString from 'generate-random-string'
 
 const rootUrl = "https://accounts.spotify.com/authorize"
 const client_id = "2c52ca5243d44c8aa54b4d26aacf8c30"
-const redirect_uri = "http://localhost:5173/login"
+const redirect_uri = import.meta.env.VITE_REDIRECT_URI
+
 const state = generateRandomString("16", false)
 const scope = "streaming \
 user-read-email \

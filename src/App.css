@@ -95,7 +95,7 @@ video {
   padding: 1em;
   /* bottom: 50%; */
   z-index: 10;
-  background-color: #f9f9f93a;
+  background-color: #00000041;
 }
 
 .popup h1{
@@ -144,6 +144,34 @@ video {
   /* bottom: 5%; */
 }
 
+/*HOME*/
+
+.home{
+  padding: 2em;
+  /* background: #1a1a1a3c; */
+}
+
+.home button{
+  margin-top: 2em;
+}
+.home button a{
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.home p {
+  text-transform: capitalize;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.home p:hover{
+  box-shadow: inset 100vw 0 0 0 #0707077c;
+  color: white;
+}
+
+.home strong{
+  font-weight: 900;
+}
 /* DISCOVER */
 
 /* GENERATE */
@@ -167,6 +195,7 @@ video {
 }
 
 .trackList{
+  background-color: #00000034;
   /* height: 500px;
   overflow: scroll; */
 }
@@ -257,6 +286,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: all 1s;
+  
 }
 button:hover {
   /* background-color: #1a1a1a0d; */
@@ -321,6 +351,13 @@ input:focus-visible {
     height: 100vh;
     justify-content: center;
     overflow: scroll;
+  }
+
+  .home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .generate, .library{

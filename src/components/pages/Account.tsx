@@ -1,23 +1,25 @@
 import useGlobal from "../../hooks/useGlobal";
-import { $user, deleteAccount, login, logout } from "../../states/user";
-import { $modal, handleModal } from "../../states/modal";
+import { $user, logout } from "../../states/user";
+import { handleModal } from "../../states/modal";
 
 export const Account = () => {
   const user = useGlobal($user);
-  const modal = useGlobal($modal);
+  // const modal = useGlobal($modal);
+
+  if (!user) return null
 
   return (
     <div className="account">
       
-        <p>{(user?.display_name).toUpperCase()}</p>
+        <p>{(user.display_name).toUpperCase()}</p>
         <hr />
       
-        <p>{(user?.email).toUpperCase()}</p>
+        <p>{(user.email).toUpperCase()}</p>
         <hr />
   
         <p>
           
-          <a href={user?.spotify} target="blank">
+          <a href={user.spotify} target="blank">
             ACCOUNT ON SPOTIFY
           </a>
         </p>

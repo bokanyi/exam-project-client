@@ -3,33 +3,43 @@ import { handleModal } from "../../states/modal";
 import useGlobal from "../../hooks/useGlobal";
 import { $user, deleteAccount } from "../../states/user";
 
-
 export default function ConfirmPanel() {
+  const user = useGlobal($user);
 
-    const user = useGlobal($user);
-
-   const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let click =1
+    let click = 1;
     window.onclick = (event: Event) => {
-      if (click ===0 && ref.current && !ref.current.contains(event.target)) {
-        
+      if (click === 0 && ref.current && !ref.current.contains(event.target as Node)) {
         handleModal("");
       } else {
-        click=0
+        click = 0;
       }
     };
   }, []);
 
+  if (!user) return null
+
   return (
     <div ref={ref} className="popup">
-    <p>Are you sure you want to say goodbye?</p>
-    <div>
-
-    <button onClick={() => {deleteAccount(user?._id),handleModal("")}}>DELETE</button>
-    <button onClick={() => {handleModal("")}}>CANCEL</button>
+      <p>Are you sure you want to say goodbye?</p>
+      <div>
+        <button
+          onClick={() => {
+            deleteAccount(user._id), handleModal("");
+          }}
+        >
+          DELETE
+        </button>
+        <button
+          onClick={() => {
+            handleModal("");
+          }}
+        >
+          CANCEL
+        </button>
+      </div>
     </div>
-  </div>
-  )
+  );
 }

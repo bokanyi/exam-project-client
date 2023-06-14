@@ -12,12 +12,12 @@ export const Playlist = () => {
   const tracks = useGlobal($tracks);
   const modal = useGlobal($modal)
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let click =1
     window.onclick = (event: Event) => {
-      if (click ===0 && ref.current && !ref.current.contains(event.target)) {
+      if (click ===0 && ref.current && !ref.current.contains(event.target as Node)) {
         
         handleModal("");
       } else {

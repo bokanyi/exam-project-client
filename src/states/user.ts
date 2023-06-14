@@ -33,6 +33,7 @@ const login = async (code: string) => {
   const token = await loginRequest(code);
   console.log(token);
   const user = decodeUser(token);
+  if(!token) return
   const decoded = jwt_decode(token) as any;
   console.log("decoded.exp", decoded.exp)
   console.log("decoded user", user);
