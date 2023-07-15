@@ -1,7 +1,7 @@
 import generateRandomString from 'generate-random-string'
 
 const rootUrl = "https://accounts.spotify.com/authorize"
-const client_id = "2c52ca5243d44c8aa54b4d26aacf8c30"
+const client_id = import.meta.env.VITE_CLIENT_ID
 const redirect_uri = import.meta.env.VITE_REDIRECT_URI
 
 const state = generateRandomString("16", false)
