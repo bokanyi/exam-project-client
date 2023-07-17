@@ -8,19 +8,19 @@ This is the client side of a music playlist generator app, where a we can login 
 ## Run locally
 
 Clone the project using the following command:
-
+```
 git clone: https://github.com/bokanyi/RITUAL2000-client.git
-
+```
 Install client dependencies and start the client using the following commands:
-
+```
 cd RITUAL2000-client
 npm install
 npm run dev
-
+```
 ## Environment variables
 
-VITE_REDIRECT_URI=http://localhost:5173/login
-VITE_SERVER_URL=http://localhost:8000/
+VITE_REDIRECT_URI=`http://localhost:5173/login`\
+VITE_SERVER_URL=`http://localhost:8000/`\
 VITE_CLIENT_ID=<YOUR_SPOTIFY_OUATH_CLIENT_ID>
 
 we need to create a spotify app to get client id and overwrite the client_id in config.ts
