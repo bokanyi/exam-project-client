@@ -23,7 +23,7 @@ VITE_REDIRECT_URI=`http://localhost:5173/login`\
 VITE_SERVER_URL=`http://localhost:8000/`\
 VITE_CLIENT_ID=<YOUR_SPOTIFY_OUATH_CLIENT_ID>
 
-we need to create a spotify app to get client id and overwrite the client_id in config.ts
+You need to create a spotify app to get client id.
 
 ## Tools
 
